@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1wkemyorp7tk"]
+
+[ext_resource type="VideoStream" path="res://addons/ffmpeg/Sin_titulo_141_720p.mp4" id="1_l8vus"]
+[ext_resource type="Script" path="res://VideoStreamPlayer.gd" id="2_m04ka"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="AspectRatioContainer/CenterContainer"]
+layout_mode = 2
+stream = ExtResource("1_l8vus")
+script = ExtResource("2_m04ka")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 564.0
+offset_right = 259.0
+offset_bottom = 585.0
+text = "PAUSE"
+
+[node name="CheckButton" type="CheckButton" parent="."]
+layout_mode = 0
+offset_left = 848.0
+offset_top = 560.0
+offset_right = 948.0
+offset_bottom = 606.0
+text = "LOOP"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 564.0
+offset_right = 682.0
+offset_bottom = 580.0
+
+[connection signal="pressed" from="Button" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="CheckButton" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_check_loop_button_pressed"]
+[connection signal="value_changed" from="HSlider" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_volume_hslider_value_changed"]
