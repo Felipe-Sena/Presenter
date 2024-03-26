@@ -25,17 +25,18 @@ layout_mode = 2
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="AspectRatioContainer/CenterContainer"]
 layout_mode = 2
 stream = ExtResource("1_l8vus")
+autoplay = true
 script = ExtResource("2_m04ka")
 
-[node name="Button" type="Button" parent="."]
+[node name="StartButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 149.0
 offset_top = 564.0
 offset_right = 259.0
 offset_bottom = 585.0
-text = "PAUSE"
+text = "START"
 
-[node name="CheckButton" type="CheckButton" parent="."]
+[node name="LoopButton" type="CheckButton" parent="."]
 layout_mode = 0
 offset_left = 848.0
 offset_top = 560.0
@@ -43,13 +44,41 @@ offset_right = 948.0
 offset_bottom = 606.0
 text = "LOOP"
 
-[node name="HSlider" type="HSlider" parent="."]
+[node name="VolumeSlider" type="HSlider" parent="."]
 layout_mode = 0
-offset_left = 403.0
-offset_top = 564.0
-offset_right = 682.0
-offset_bottom = 580.0
+offset_left = 996.0
+offset_top = 573.0
+offset_right = 1275.0
+offset_bottom = 589.0
+rotation = -1.57079
 
-[connection signal="pressed" from="Button" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="CheckButton" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_check_loop_button_pressed"]
-[connection signal="value_changed" from="HSlider" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_volume_hslider_value_changed"]
+[node name="TimeSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 522.0
+offset_right = 899.0
+offset_bottom = 538.0
+
+[node name="VideoTime" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.239583
+anchor_top = 0.746914
+anchor_right = 0.27691
+anchor_bottom = 0.808642
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="VideoLength" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.315972
+anchor_top = 0.746914
+anchor_right = 0.350694
+anchor_bottom = 0.808642
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="StartButton" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="LoopButton" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_check_loop_button_pressed"]
+[connection signal="value_changed" from="VolumeSlider" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_volume_hslider_value_changed"]
