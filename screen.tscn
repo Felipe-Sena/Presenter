@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1wkemyorp7tk"]
 
-[ext_resource type="VideoStream" path="res://freeCAD.mp4" id="1_448ve"]
+[ext_resource type="VideoStream" path="res://addons/ffmpeg/Sin_titulo_141_720p.mp4" id="1_nnc7s"]
 [ext_resource type="Script" path="res://VideoStreamPlayer.gd" id="2_m04ka"]
 
 [node name="Control" type="Control"]
@@ -24,7 +24,7 @@ layout_mode = 2
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="AspectRatioContainer/CenterContainer"]
 layout_mode = 2
-stream = ExtResource("1_448ve")
+stream = ExtResource("1_nnc7s")
 autoplay = true
 script = ExtResource("2_m04ka")
 
@@ -58,6 +58,7 @@ offset_left = 556.0
 offset_top = 916.0
 offset_right = 1308.0
 offset_bottom = 1068.0
+step = 0.0
 
 [node name="VideoTime" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -84,3 +85,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="StartButton" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="LoopButton" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_check_loop_button_pressed"]
 [connection signal="value_changed" from="VolumeSlider" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_volume_hslider_value_changed"]
+[connection signal="drag_ended" from="TimeSlider" to="AspectRatioContainer/CenterContainer/VideoStreamPlayer" method="_on_time_slider_drag_ended"]
